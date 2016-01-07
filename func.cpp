@@ -1,6 +1,12 @@
 #include "func.h"
-#include <>
 namespace commom{
+	void LOG_INFO(std::string& str){
+		std::cout<<str<<std::endl;
+	}
+	void DEBUG_INFO(std::string& str){
+
+	}
+
 	template <class T> std::string convert2str(T value) {
 			std::stringstream ss;	
 			ss << value;	
