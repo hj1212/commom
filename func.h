@@ -36,8 +36,26 @@ namespace commom{
 		char* ReadLine( char* buffer, int  size, FILE *fi );
 		int WiteLine( const char *str, FILE *fo );
 	public://³£ÓÃÄ£°æ
-		template <class T> int MaxArray(T* prob, int n);
-		template <class T> int MinArray(T* prob, int n);
+		template <class T> int MaxArray(T* prob, int n){
+			if((n < 1 )||(prob == NULL))return -1;
+			T temp = prob[0];	int index =0;
+			for(int i =0; i< n; i++){
+				if(temp < prob[i] ){
+					temp = prob[i]; 	index = i;
+				}
+			}
+			return index;
+		}
+		template <class T> int MinArray(T* prob, int n){
+			if((n < 1 )||(prob == NULL))return -1;
+			T temp = prob[0];	int index =0;
+			for(int i =0; i< n; i++){
+				if(temp > prob[i] ){
+					temp = prob[i]; 	index = i;
+				}
+			}
+			return index;
+		}
 		template <class T> std::string ConvertToStr(T value) {
 			std::stringstream ss;	ss << value;	return ss.str();
 		}

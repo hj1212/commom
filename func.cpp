@@ -20,8 +20,8 @@ namespace commom{
 		vec.clear();
 		size_t last = 0, index=str.find_first_of(delim,last);	
 		while (index!=std::string::npos){
-		vec.push_back(str.substr(last,index-last));	
-		last=index+1;index=str.find_first_of(delim,last);
+			vec.push_back(str.substr(last,index-last));	
+			last=index+1;index=str.find_first_of(delim,last);
 		}	
 		if (index-last>0)	vec.push_back(str.substr(last,index-last));
 	}
@@ -130,6 +130,7 @@ namespace commom{
 		return fputs(str,fo);
 	}
 
+	/*
 	template <class T> int Func::MaxArray(T* prob, int n) {
 		if((n < 1 )||(prob == NULL))return -1;
 		T temp = prob[0];	int index =0;
@@ -150,4 +151,5 @@ namespace commom{
 		}
 		return index;
 	}
+	*/
 };
