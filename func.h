@@ -31,6 +31,7 @@ namespace commom{
 		void SplitOnce(const char* d,const std::string& str, std::vector< std::string >& vec);			
 		inline uint16_t Combine(char high, char low){	return (((uint16_t(high) & 0x00ff ) << 8) | (uint16_t(low) & 0x00ff));	}		
 		bool StrToVec(const std::string& str,  intvector& v);
+		uint16_t  StrToInt(const std::string& str);
 		std::string  VecToStr(intvector& v, int i,int j );
 	public://文件处理
 		char* ReadLine( char* buffer, int  size, FILE *fi );

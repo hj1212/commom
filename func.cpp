@@ -74,13 +74,34 @@ namespace commom{
 		if (index-last>0)	vec[str.substr(last,index-last)]++;	
 	}
 	
-
+	uint16_t Func::StrToInt(const std::string& str){
+		char leftstr, rightstr;	
+		if(str.empty())return 0;
+		int i =0;
+		if(!(str[i] & 0x80)) {
+			return str[i];
+		}	else if ((unsigned char)str[i] <= 0xdf && i + 1 < str.size()) {
+			leftstr = (str[i] >> 2) & 0x07;	
+			rightstr = (str[i+1] & 0x3f) | ((str[i] & 0x03) << 6 );	
+			return Combine(leftstr, rightstr);
+		}	else if ((unsigned char)str[i] <= 0xef && i + 2 < str.size()) {	
+			leftstr = (str[i] << 4) | ((str[i+1] >> 2) & 0x0f );	
+			rightstr = ((str[i+1]<<6) & 0xc0) | (str[i+2] & 0x3f); 
+			return Combine(leftstr, rightstr);	
+		}else{
+			return 0;
+		}
+		
+	}
 	bool Func::StrToVec(const std::string& str,  intvector& v){
+		//commom::DEBUG_INFO(str);
 		char leftstr, rightstr;	
 		if(str.empty())return false;
 		v.clear();
 		for( unsigned int i = 0; i <str.size(); ){
 			if(!(str[i] & 0x80)) {
+				//commom::DEBUG_INFO(std::string(str[i]));
+				//std::cout<<str[i]<<std::endl;
 				v.push_back(str[i++]);
 			}	else if ((unsigned char)str[i] <= 0xdf && i + 1 < str.size()) {
 				leftstr = (str[i] >> 2) & 0x07;	
@@ -100,6 +121,7 @@ namespace commom{
 				return false;
 			}
 		}	
+		//commom::DEBUG_INFO(ConvertToStr(v.size()));
 		return true;
 }		
 	std::string Func::VecToStr(intvector& v, int i,int j ){
