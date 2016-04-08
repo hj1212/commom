@@ -94,14 +94,11 @@ namespace commom{
 		
 	}
 	bool Func::StrToVec(const std::string& str,  intvector& v){
-		//commom::DEBUG_INFO(str);
 		char leftstr, rightstr;	
 		if(str.empty())return false;
 		v.clear();
 		for( unsigned int i = 0; i <str.size(); ){
 			if(!(str[i] & 0x80)) {
-				//commom::DEBUG_INFO(std::string(str[i]));
-				//std::cout<<str[i]<<std::endl;
 				v.push_back(str[i++]);
 			}	else if ((unsigned char)str[i] <= 0xdf && i + 1 < str.size()) {
 				leftstr = (str[i] >> 2) & 0x07;	
@@ -121,7 +118,6 @@ namespace commom{
 				return false;
 			}
 		}	
-		//commom::DEBUG_INFO(ConvertToStr(v.size()));
 		return true;
 }		
 	std::string Func::VecToStr(intvector& v, int i,int j ){
@@ -141,9 +137,6 @@ namespace commom{
 		}
 		return str;
 	}
-
-
-
 	char* Func::ReadLine( char* buffer, int  size, FILE *fi ){
 		memset( buffer,0,size );
 		return fgets(buffer, size, fi);
@@ -151,27 +144,4 @@ namespace commom{
 	int Func::WiteLine( const char *str, FILE *fo ){
 		return fputs(str,fo);
 	}
-
-	/*
-	template <class T> int Func::MaxArray(T* prob, int n) {
-		if((n < 1 )||(prob == NULL))return -1;
-		T temp = prob[0];	int index =0;
-		for(int i =0; i< n; i++){
-			if(temp > prob[i] ){
-				temp = prob[i]; 	index = i;
-			}
-		}
-		return index;
-	}
-	template <class T> int Func::MinArray(T* prob, int n) {
-		if((n < 1 )||(prob == NULL))return -1;
-		T temp = prob[0];	int index =0;
-		for(int i =0; i< n; i++){
-			if(temp < prob[i] ){
-				temp = prob[i]; 	index = i;
-			}
-		}
-		return index;
-	}
-	*/
 };
